@@ -137,7 +137,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				
 			var div_items="";
 			$.each(item.respuestas, function( j, items ) {
-				div_items+='<div class="indepth_respuesta_item active" num="'+items.tipo+'"><div class="output_respuesta"><div class="input_respuesta"><input type="text"></div><img class="respuesta" src="images/respuestas/'+ (i+1) +'.png"><div class="responder">R</div></div></div>';
+				div_items+='<div class="indepth_respuesta_item active" num="'+items.tipo+'"><div class="output_respuesta"><div class="input_respuesta"><input type="text"></div><img class="respuesta" src="images/respuestas/'+ (i+1) +'.png"><div class="responder"></div></div></div>';
 			});						
 										
 			var div_fin='</div></div></div>';
@@ -173,7 +173,7 @@ $("#indepth_boton_empezar").on("click",function(){
 			if (txtResp == "") {
 				return;
 			}
-			
+
 			if(txtResp == pregunta_num){
 				console.log("bien");
 				respuesta.push(1);
