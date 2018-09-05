@@ -471,7 +471,7 @@
 	left: 2px;
 	right: 0px;
 	bottom: 20px;
-	width: 348px;
+	width: 62%;
 	height: 62px;
 }
 
@@ -488,12 +488,12 @@
 }
 
 .respuesta {
-	width: 182px;
+	width: 186px;
 	height: 210px;
 	position: absolute;
 	top: 1px;
 	bottom: 0px;
-	left: 375px;
+	left: 371px;
 	right: 0px;
 	display: none;
 }
@@ -806,16 +806,6 @@
 		margin: 0 auto;
 	}
 	
-	.indepth_pregunta_item{
-		max-width: 600px;
-	}	
-	
-	.indepth_respuestas_cont{
-		margin-left: 0px;
-		margin-top: 20px;
-		height: auto;
-	}
-	
 	.indepth_pregunta_cont{
 		width: 600px;
 	}
@@ -855,11 +845,6 @@
 	    margin: auto;
 	}
 }
-@media screen and (max-width: 573px) {
-	.indepth_respuesta_item {
-	    width: 100%;
-	}
-}
 
 @media screen and (max-width: 590px) {
 	.indepth_result_container {
@@ -867,23 +852,11 @@
 	}
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 575px) {
 	#content_page1_title {
     width: 95%;
     position: relative;
     margin: auto;
-	}
-
-	#dominos img {
-		width: 75%;
-	}
-
-	#dominos {
-	    position: absolute;
-	    float: left;
-	    display: table;
-	    bottom: 23px;
-	    top: 18px;
 	}
 
 	.indepth_pronostico_cont{
@@ -903,19 +876,37 @@
 	    padding: 10px;
 	}
 
-	#presentado{
-	    width: 400px;
-	    max-width: 600px;
-	}
-
-}
-
-@media screen and (max-width: 420px) {
 	.indepth_respuesta_item {
-	    width: 97%;
-	    margin-left: 0px;
+	    width: 100%;
 	}
-}
+
+	.output_respuesta {
+		background-image: url(../images/base_r_m.png);
+	}
+
+	.indepth_pregunta_main {
+		width: 310px;
+		height: 300px;
+		margin: auto;
+	}
+
+	.input_respuesta {
+		top: 51px;
+		left: 3px;
+		width: 98%;
+		height: 59px;
+	}
+
+	.responder {
+		top: -340px;
+	}
+
+	.respuesta {
+	    width: 165px;
+	    height: 175px;
+	    top: 122px;
+	    left: 75px;
+	}
 
 @media screen and (max-width: 400px) {
 	.indepth_pronostico_cont{
@@ -979,25 +970,6 @@
 }
 
 @media screen and (max-width: 375px) {
-	.indepth_pregunta_img{
-		width: 280px;
-		height: auto;
-		background: none;
-	}
-	
-	.indepth_respuesta_item{
-		width: 100%;
-	}
-	
-	.indepth_respuestas_cont{
-		width: 79%;
-	}
-	
-	.indepth_pronostico_cont {
-	    width: 260px;
-	    padding: 10px 10px;
-	}
-	
 	#indepth_resultados{
 		display: block;
 		

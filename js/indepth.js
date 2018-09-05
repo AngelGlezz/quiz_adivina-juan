@@ -170,6 +170,10 @@ $("#indepth_boton_empezar").on("click",function(){
 			//var pregunta_obj = preguntas[pregunta_num];
 			//var respuesta_obj = pregunta_obj.respuestas[respuesta_num];
 
+			if (txtResp == "") {
+				return;
+			}
+			
 			if(txtResp == pregunta_num){
 				console.log("bien");
 				respuesta.push(1);
