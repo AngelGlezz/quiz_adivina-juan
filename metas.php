@@ -1,13 +1,18 @@
 <?php
 	$metas = array(
-		"fiel" => array(
-			"title" => "¿Fiel o infiel?",
-			"description" => "¡Todos quieren a alguien como tú! Tu fidelidad no se cuestiona. Es más, ni los del Atlas esperando 100 años por un título te superan",
-			"image" => "images/respuestas/fiel.jpg" 
+		"mal" => array(
+			"title" => "Adivina Juan",
+			"description" => "Estás tan lamentable que ni Osorio te quiere en la Selección. Mejor pide disculpas y retírate…",
+			"image" => "images/resultado/1.jpg" 
 		),
-		"infiel" => array(
-			"title" => "¿Fiel o infiel?",
-			"description" => "Te conocen como el Zlatan de tu colonia y no precisamente por jugar como él. Sólo sabes estar de equipo en equipo y así como hoy puede estar ganando “tu” equipo, mañana ya los cambiaste",
-			"image" => "images/respuestas/infiel.jpg" 
+		"maso" => array(
+			"title" => "Adivina Juan",
+			"description" => "Pues ahí se va… no sacaste un resultado así que tú digas \"uy qué bruto, cuánto sabe\", pero peor es nada",
+			"image" => "images/resultado/2.jpg" 
+		),
+		"bien" => array(
+			"title" => "Adivina Juan",
+			"description" => "¡Eres como el Superman que todos esperábamos! Si puedes pásame tus datos, te necesito (junto con tus conocimientos) para ganarme una lana",
+			"image" => "images/resultado/3.jpg" 
 		)
 	);

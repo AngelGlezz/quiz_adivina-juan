@@ -489,7 +489,7 @@
 
 .respuesta {
 	width: 186px;
-	height: 210px;
+	height: 230px;
 	position: absolute;
 	top: 1px;
 	bottom: 0px;
@@ -509,6 +509,20 @@
 	cursor: pointer;
 	background-image: url(../images/boton.png);
 	background-size: 100% 100%;
+}
+
+.rendir {
+	width: 120px;
+	height: 30px;
+	margin: auto;
+	position: absolute;
+	left: 0px;
+	right: 250px;
+	bottom: 0px;
+	cursor: pointer;
+	background-image: url(../images/boton_merindo.png);
+	background-size: 100% 100%;
+	display: none;
 }
 
 .indepth_respuestas_cont{
@@ -567,6 +581,7 @@
 	opacity: .8;
 	position: absolute;
 	bottom: 350px;
+	text-align: center;
 }
 
 #social_media {
@@ -855,9 +870,9 @@
 
 @media screen and (max-width: 575px) {
 	#content_page1_title {
-    width: 95%;
-    position: relative;
-    margin: auto;
+	    width: 95%;
+	    position: relative;
+	    margin: auto;
 	}
 
 	.indepth_pronostico_cont{
@@ -900,11 +915,16 @@
 
 	.responder {
 		top: -340px;
+		left: 200px;
+	}
+
+	.rendir {
+		top: -340px;
 	}
 
 	.respuesta {
-	    width: 165px;
-	    height: 175px;
+	    width: 158px;
+	    height: 185px;
 	    top: 122px;
 	    left: 75px;
 	}

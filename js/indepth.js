@@ -18,7 +18,7 @@ function countMaxValue(array_elements) {
 
     array_elements.sort();
 
-    var current = null;
+    /*var current = null;
     var cnt = 0;
     for (var i = 0; i < array_elements.length; i++) {
         if (array_elements[i] != current) {
@@ -41,7 +41,16 @@ function countMaxValue(array_elements) {
         }
     }
 
-    return maxNum;
+    return array(maxNum,cnt);*/
+
+	var cnt = 0;
+    for (var i = 0; i < array_elements.length; i++) {
+    	if (array_elements[i] == 1) {
+    		cnt++;
+    	}
+    }
+
+    return cnt;
 
 }
 
@@ -137,7 +146,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				
 			var div_items="";
 			$.each(item.respuestas, function( j, items ) {
-				div_items+='<div class="indepth_respuesta_item active" num="'+items.tipo+'"><div class="output_respuesta"><div class="input_respuesta"><input type="text"></div><img class="respuesta" src="images/respuestas/'+ (i+1) +'.png"><div class="responder"></div></div></div>';
+				div_items+='<div class="indepth_respuesta_item active" num="'+items.tipo+'"><div class="output_respuesta"><div class="input_respuesta"><input type="text"></div><img class="respuesta" src="images/respuestas/'+ (i+1) +'.png"><div class="responder"></div><div class="rendir"></div></div></div>';
 			});						
 										
 			var div_fin='</div></div></div>';
@@ -163,12 +172,9 @@ $("#indepth_boton_empezar").on("click",function(){
 		$(document).on("click",".responder",function(){
 			
 			var inputElement = $(this).prev().prev().children();
-			var txtResp = inputElement.val();
+			var txtResp = inputElement.val().toUpperCase();
 			var respuesta_cont = $(this).parent().parent();
 			var pregunta_num = respuesta_cont.attr("num");
-			//var respuesta_num = $(this).attr("num");
-			//var pregunta_obj = preguntas[pregunta_num];
-			//var respuesta_obj = pregunta_obj.respuestas[respuesta_num];
 
 			if (txtResp == "") {
 				return;
@@ -177,33 +183,51 @@ $("#indepth_boton_empezar").on("click",function(){
 			if(txtResp == pregunta_num){
 				console.log("bien");
 				respuesta.push(1);
-			}else{
-				console.log("mal");
-				respuesta.push(0);
+				$(this).removeClass("active").addClass("disable");
+				$(this).click(false);
+				$(this).prev().show();
+				$(this).hide();
+				$(this).next().hide();
+				$(inputElement).prop('disabled', true);
+			} else {
+				$(this).next().show();
 			}
-
-			$(inputElement).prop('disabled', true);
 			
 			$(this).addClass("select");
 			//respuesta.push(respuesta_num);
 			console.log(respuesta);
+			console.log(txtResp);
+
+			console.log(countMaxValue(respuesta));
 			
-			$(this).removeClass("active").addClass("disable");
-			$(this).click(false);
-			$(this).prev().show();
-			$(this).hide();
-				
-				if(respuesta.length == preguntas.length){
-					var total = countMaxValue(respuesta);
-					window.setTimeout(function(){
-						finish_test(total);
-					});
-				}
+			if(respuesta.length == preguntas.length){
+				var total = countMaxValue(respuesta);
+				window.setTimeout(function(){
+					finish_test(total);
+				});
+			}
 			return respuesta;
 		});
-		
-		
-		
+
+		$(document).on("click",".rendir",function(){
+			var inputElement = $(this).prev().prev().prev().children();
+			console.log("mal");
+			respuesta.push(0);
+			$(inputElement).prop('disabled', true);
+			$(this).prev().removeClass("active").addClass("disable");
+			$(this).prev().click(false);
+			$(this).prev().prev().show();
+			$(this).hide();
+			$(this).prev().hide();
+			console.log(respuesta);
+			if(respuesta.length == preguntas.length){
+				var total = countMaxValue(respuesta);
+				window.setTimeout(function(){
+					finish_test(total);
+				});
+			}
+			return respuesta;
+		});
 });
 
 function finish_test(total){	
@@ -218,18 +242,27 @@ function finish_test(total){
 		"position":"fixed",
 		"top": 0,
 		"left": -ventana_ancho,
-		"background-image": "url("+urlIndepth+"images/respuestas/" + img + ".jpg)"
 	});
 
   	var msg="";
+  	var resulta = "";
 
-  	if (total == "fiel"){
-	  	msg="¡Todos quieren a alguien como tú! Tu fidelidad no se cuestiona. Es más, ni los del Atlas esperando 100 años por un título te superan";
-  	} else if (total == "infiel"){
-	  	msg="Te conocen como el Zlatan de tu colonia y no precisamente por jugar como él. Sólo sabes estar de equipo en equipo y así como hoy puede estar ganando “tu” equipo, mañana ya los cambiaste";
+  	if (total <= 3){
+	  	msg="Estás tan lamentable que ni Osorio te quiere en la Selección. Mejor pide disculpas y retírate…";
+	  	$("#indepth_resultados").css({"background-image": "url("+urlIndepth+"images/resultado/1.jpg)"});
+	  	resulta = "mal";
+  	} else if (total >= 4 && total <= 6){
+	  	msg="Pues ahí se va… no sacaste un resultado así que tú digas \"uy qué bruto, cuánto sabe\", pero peor es nada";
+	  	$("#indepth_resultados").css({"background-image": "url("+urlIndepth+"images/resultado/2.jpg)"});
+	  	resulta = "maso";
+  	} else if (total >= 7){
+	  	msg="¡Eres como el Superman que todos esperábamos! Si puedes pásame tus datos, te necesito (junto con tus conocimientos) para ganarme una lana";
+	  	$("#indepth_resultados").css({"background-image": "url("+urlIndepth+"images/resultado/3.jpg)"});
+	  	resulta = "bien";
   	}
   	
   	$(".indepth_result_container").html(msg);
+  	console.log(resulta);
 
 	$("#indepth_resultados").animate({
 	  	"left": 0
@@ -239,18 +272,20 @@ function finish_test(total){
 
   	$("#indepth_twittear").click(function(){
   		var text = "";
-		if (total == "fiel") {
-			text = encodeURIComponent("¡Todos quieren a alguien como tú! Tu fidelidad no se cuestiona. Es más, ni los del Atlas esperando 100 años por un título te superan");
-		} else if (total == "infiel") {
-			text = encodeURIComponent("Te conocen como el Zlatan de tu colonia y no precisamente por jugar como él. Sólo sabes estar de equipo en equipo y así como hoy puede estar ganando “tu” equipo, mañana ya los cambiaste");
+		if (total <= 3) {
+			text = encodeURIComponent("Estás tan lamentable que ni Osorio te quiere en la Selección. Mejor pide disculpas y retírate…");
+		} else if (total >= 4 && total <= 6) {
+			text = encodeURIComponent("Pues ahí se va… no sacaste un resultado así que tú digas \"uy qué bruto, cuánto sabe\", pero peor es nada");
+		} else if (total >= 7) {
+			text = encodeURIComponent("¡Eres como el Superman que todos esperábamos! Si puedes pásame tus datos, te necesito (junto con tus conocimientos) para ganarme una lana");
 		}
 		
-		var url = encodeURIComponent("http://juanfutbol.com/indepth/que-tan-fiel-le-eres-a-tu-equipo");
+		var url = encodeURIComponent("http://juanfutbol.com/indepth/adivina-juan");
 		window.open("https://twitter.com/share?text="+text+"&hashtags=JFQuiz&url="+url,"","width=500, height=300");
 	});
 
-	$("#indepth_facebook").click(function(){
-		var url = encodeURIComponent("http://juanfutbol.com/indepth/que-tan-fiel-le-eres-a-tu-equipo?m="+total);
+	$("#indepth_facebook").click(function(resulta){
+		var url = encodeURIComponent("http://juanfutbol.com/indepth/adivina-juan?m="+resulta);
 		window.open("https://www.facebook.com/sharer/sharer.php?u="+url,"","width=500, height=300");
 	});
 }
