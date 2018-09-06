@@ -588,6 +588,7 @@
 	width: 110px;
 	margin: 0px auto;
 	overflow: auto;
+	margin-top: 100px;
 }
 
 #indepth_twittear {
@@ -659,13 +660,14 @@
 }
 
 .indepth_result_container{
-	width: 100%;
+	width: 98.5%;
 	display: table-cell;
 	vertical-align: middle;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 29px;
 	opacity: 0.8;
 	padding: 10px;
+	position: absolute;
 }
 
 .indepth_result_title{

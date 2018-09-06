@@ -63,7 +63,7 @@ $("#indepth_boton_empezar").on("click",function(){
 	 var data = {
 				  "preguntas": [
 				    {
-				      "pregunta": '<img src="images/preguntas/p1.png">',
+				      "pregunta": '<img src="'+urlIndepth+'images/preguntas/p1.png">',
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
@@ -72,7 +72,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				      ]
 				    },
 				    {
-				      "pregunta": '<img src="images/preguntas/p2.png">',
+				      "pregunta": '<img src="'+urlIndepth+'images/preguntas/p2.png">',
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
@@ -81,7 +81,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				      ]
 				    },
 				    {
-				      "pregunta": '<img src="images/preguntas/p3.png">',
+				      "pregunta": '<img src="'+urlIndepth+'images/preguntas/p3.png">',
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
@@ -90,7 +90,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				      ]
 				    },
 				    {
-				      "pregunta": '<img src="images/preguntas/p4.png">',
+				      "pregunta": '<img src="'+urlIndepth+'images/preguntas/p4.png">',
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
@@ -99,7 +99,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				      ]
 				    },
 				    {
-				      "pregunta": '<img src="images/preguntas/p5.png">',
+				      "pregunta": '<img src="'+urlIndepth+'images/preguntas/p5.png">',
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
@@ -108,7 +108,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				      ]
 				    },
 				    {
-				      "pregunta": '<img src="images/preguntas/p6.png">',
+				      "pregunta": '<img src="'+urlIndepth+'images/preguntas/p6.png">',
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
@@ -117,7 +117,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				      ]
 				    },
 				    {
-				      "pregunta": '<img src="images/preguntas/p7.png">',
+				      "pregunta": '<img src="'+urlIndepth+'images/preguntas/p7.png">',
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
@@ -126,7 +126,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				      ]
 				    },
 				    {
-				      "pregunta": '<img src="images/preguntas/p8.png">',
+				      "pregunta": '<img src="'+urlIndepth+'images/preguntas/p8.png">',
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
@@ -146,7 +146,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				
 			var div_items="";
 			$.each(item.respuestas, function( j, items ) {
-				div_items+='<div class="indepth_respuesta_item active" num="'+items.tipo+'"><div class="output_respuesta"><div class="input_respuesta"><input type="text"></div><img class="respuesta" src="images/respuestas/'+ (i+1) +'.png"><div class="responder"></div><div class="rendir"></div></div></div>';
+				div_items+='<div class="indepth_respuesta_item active" num="'+items.tipo+'"><div class="output_respuesta"><div class="input_respuesta"><input type="text"></div><img class="respuesta" src="'+urlIndepth+'images/respuestas/'+ (i+1) +'.png"><div class="responder"></div><div class="rendir"></div></div></div>';
 			});						
 										
 			var div_fin='</div></div></div>';
@@ -230,6 +230,7 @@ $("#indepth_boton_empezar").on("click",function(){
 		});
 });
 
+var totalfb = "";
 function finish_test(total){	
 	ventana_alto = window.innerHeight ? window.innerHeight : $(window).height();;
 	var ventana_ancho = $(window).width();
@@ -250,19 +251,19 @@ function finish_test(total){
   	if (total <= 3){
 	  	msg="Estás tan lamentable que ni Osorio te quiere en la Selección. Mejor pide disculpas y retírate…";
 	  	$("#indepth_resultados").css({"background-image": "url("+urlIndepth+"images/resultado/1.jpg)"});
-	  	resulta = "mal";
+	  	totalfb = "mal";
   	} else if (total >= 4 && total <= 6){
 	  	msg="Pues ahí se va… no sacaste un resultado así que tú digas \"uy qué bruto, cuánto sabe\", pero peor es nada";
 	  	$("#indepth_resultados").css({"background-image": "url("+urlIndepth+"images/resultado/2.jpg)"});
-	  	resulta = "maso";
+	  	totalfb = "maso";
   	} else if (total >= 7){
 	  	msg="¡Eres como el Superman que todos esperábamos! Si puedes pásame tus datos, te necesito (junto con tus conocimientos) para ganarme una lana";
 	  	$("#indepth_resultados").css({"background-image": "url("+urlIndepth+"images/resultado/3.jpg)"});
-	  	resulta = "bien";
+	  	totalfb = "bien";
   	}
   	
   	$(".indepth_result_container").html(msg);
-  	console.log(resulta);
+  	console.log(totalfb);
 
 	$("#indepth_resultados").animate({
 	  	"left": 0
@@ -284,8 +285,9 @@ function finish_test(total){
 		window.open("https://twitter.com/share?text="+text+"&hashtags=JFQuiz&url="+url,"","width=500, height=300");
 	});
 
-	$("#indepth_facebook").click(function(resulta){
-		var url = encodeURIComponent("http://juanfutbol.com/indepth/adivina-juan?m="+resulta);
+	$("#indepth_facebook").click(function(){
+		var url = encodeURIComponent("http://juanfutbol.com/indepth/adivina-juan?m="+totalfb);
+		console.log(url);
 		window.open("https://www.facebook.com/sharer/sharer.php?u="+url,"","width=500, height=300");
 	});
 }
