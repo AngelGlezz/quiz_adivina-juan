@@ -152,7 +152,7 @@ $("#indepth_boton_empezar").on("click",function(){
 		 
 		 $.each(preguntas, function( i, item ) {
 			 
-			var div=' <div class="indepth_pregunta_item"><div class="indepth_pregunta">'+item.pregunta+'</div><div class="indepth_pregunta_main"><div class="indepth_pregunta_img"><img src="'+urlIndepth+'images/preguntas/'+(i+1)+'.jpg" /></div><div class="indepth_respuestas_cont" num="'+i+'">';
+			var div=' <div class="indepth_pregunta_item"><div class="indepth_pregunta">'+item.pregunta+'</div><div class="indepth_pregunta_main"><div class="indepth_pregunta_img"></div><div class="indepth_respuestas_cont" num="'+i+'">';
 				
 			var div_items="";
 			$.each(item.respuestas, function( j, items ) {
@@ -166,8 +166,7 @@ $("#indepth_boton_empezar").on("click",function(){
 		 
 		 $("#indepth_page1").css({
 			"top":ventana_alto-100,
-			"visibility":"visible",
-			"height": "auto"
+			"visibility":"visible"
 		});
 		
 		$("#nav-bar-stats,#top-bar-wrapper,#body-wrapper").hide();
