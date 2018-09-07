@@ -56,18 +56,21 @@ function countMaxValue(array_elements) {
 
 $("#indepth_contador_circle input").css("margin-top",0);
 
+var data;
+
 $("#indepth_boton_empezar").on("click",function(){
 	$("#indepth_boton_empezar").click(false);
 	 ventana_alto = window.innerHeight ? window.innerHeight : $(window).height();
 	 
-	 var data = {
+	  data = {
 				  "preguntas": [
 				    {
 				      "pregunta": '<img src="'+urlIndepth+'images/preguntas/p1.png">',
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
-				          "tipo": "THIERRY HENRY"
+				          "info": "Jugué con Edgar Davids(Juventus), André-Pierre Gignac(Francia), Robin van Persie(Arsenal) y Gianluca Zambrotta(Barcelona)",
+				          "tipo": ["THIERRY","HENRY","THIERRY HENRY"] 
 				        }
 				      ]
 				    },
@@ -76,7 +79,8 @@ $("#indepth_boton_empezar").on("click",function(){
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
-				          "tipo": "ZLATAN IBRAHIMOVIC"
+				          "info": "Jugué con Luis Figo(Ajax), Rafael van der Vaart(Inter), Fabio Cannavaro(Juventus) y Robinho(Milan)",
+				          "tipo": ["ZLATAN","IBRAHIMOVIC","ZLATAN IBRAHIMOVIC"] 
 				        }
 				      ]
 				    },
@@ -85,7 +89,8 @@ $("#indepth_boton_empezar").on("click",function(){
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
-				          "tipo": "ANGEL DI MARIA"
+				          "info": "Jugué con David Luiz(Benfica), Lionel Messi(Argentina), Víctor Valdés(Manchester United) y Javier Mascherano(Argentina)",
+				          "tipo": ["ANGEL","DI MARIA","ANGEL DI MARIA"]
 				        }
 				      ]
 				    },
@@ -94,7 +99,8 @@ $("#indepth_boton_empezar").on("click",function(){
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
-				          "tipo": "CRISTIAN TELLO"
+				          "info": "Jugué con Carlos Salcedo(Fiorentina), Jonathan Dos Santos(Barcelona), Héctor Herrera(Porto) y Andrés Guardado(Betis)",
+				          "tipo": ["CRISTIAN","TELLO","CRISTIAN TELLO"]
 				        }
 				      ]
 				    },
@@ -103,7 +109,8 @@ $("#indepth_boton_empezar").on("click",function(){
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
-				          "tipo": "VICTOR VALDES"
+				          "info": "Jugué con Sergio Ramos(España), Carles Puyol(España), Ángel Di María(Manchester United) y Xabi Alonso(España)",
+				          "tipo": ["VICTOR","VALDES","VICTOR VALDES"] 
 				        }
 				      ]
 				    },
@@ -112,7 +119,8 @@ $("#indepth_boton_empezar").on("click",function(){
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
-				          "tipo": "ANDRES GUARDADO"
+				          "info": "Jugué con Filipe Luis(Depor La Coruña), Raúl Jiménez(México), Santiago Arias(PSV) y Antonio Adán(Betis)",
+				          "tipo": ["ANDRES","GUARDADO","ANDRES GUARDADO"] 
 				        }
 				      ]
 				    },
@@ -121,7 +129,8 @@ $("#indepth_boton_empezar").on("click",function(){
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
-				          "tipo": "CRISTIANO RONALDO"
+				          "info": "Jugué con Paulo Dybala(Juventus), Gabriel Heinze(Manchester United), Fernando Gago(Real Madrid) y Ezequiel Garay(Real Madrid)",
+				          "tipo": ["CRISTIANO","RONALDO","CRISTIANO RONALDO"] 
 				        }
 				      ]
 				    },
@@ -130,7 +139,8 @@ $("#indepth_boton_empezar").on("click",function(){
 				      "respuestas": [
 				        {
 				          "respuesta": "Sí",
-				          "tipo": "SAMI KHEDIRA"
+				          "info": "Jugué con Pavel Pardo(Stuttgart), Javier Hernández(Real Madrid) y Ricardo Osorio(Stuttgart)",
+				          "tipo": ["SAMI","KHEDIRA","SAMI KHEDIRA"] 
 				        }
 				      ]
 				    }
@@ -146,7 +156,7 @@ $("#indepth_boton_empezar").on("click",function(){
 				
 			var div_items="";
 			$.each(item.respuestas, function( j, items ) {
-				div_items+='<div class="indepth_respuesta_item active" num="'+items.tipo+'"><div class="output_respuesta"><div class="input_respuesta"><input type="text"></div><img class="respuesta" src="'+urlIndepth+'images/respuestas/'+ (i+1) +'.png"><div class="responder"></div><div class="rendir"></div></div></div>';
+				div_items+='<div class="indepth_respuesta_item active" num="'+i+'"><div class="output_respuesta"><div class="input_respuesta"><input type="text"></div><img class="respuesta" src="'+urlIndepth+'images/respuestas/'+ (i+1) +'.png"><div class="responder"></div><div class="rendir"></div></div></div></div><div class="indepth_info_cont">'+items.info;
 			});						
 										
 			var div_fin='</div></div></div>';
@@ -180,7 +190,16 @@ $("#indepth_boton_empezar").on("click",function(){
 				return;
 			}
 
-			if(txtResp == pregunta_num){
+			var options = data["preguntas"][pregunta_num]["respuestas"][0]["tipo"];
+
+			var goodRes = false;
+			for (var i = 0; i < options.length; i++) {
+				if(txtResp == options[i]){
+					goodRes = true;
+				}
+			}
+			
+			if(goodRes){
 				console.log("bien");
 				respuesta.push(1);
 				$(this).removeClass("active").addClass("disable");
@@ -189,17 +208,13 @@ $("#indepth_boton_empezar").on("click",function(){
 				$(this).hide();
 				$(this).next().hide();
 				$(inputElement).prop('disabled', true);
+				$(this).parent().parent().parent().next().show();
 			} else {
 				$(this).next().show();
 			}
 			
 			$(this).addClass("select");
-			//respuesta.push(respuesta_num);
-			console.log(respuesta);
-			console.log(txtResp);
-
-			console.log(countMaxValue(respuesta));
-			
+		
 			if(respuesta.length == preguntas.length){
 				var total = countMaxValue(respuesta);
 				window.setTimeout(function(){
@@ -219,7 +234,7 @@ $("#indepth_boton_empezar").on("click",function(){
 			$(this).prev().prev().show();
 			$(this).hide();
 			$(this).prev().hide();
-			console.log(respuesta);
+			$(this).parent().parent().parent().next().show();
 			if(respuesta.length == preguntas.length){
 				var total = countMaxValue(respuesta);
 				window.setTimeout(function(){
@@ -263,7 +278,6 @@ function finish_test(total){
   	}
   	
   	$(".indepth_result_container").html(msg);
-  	console.log(totalfb);
 
 	$("#indepth_resultados").animate({
 	  	"left": 0

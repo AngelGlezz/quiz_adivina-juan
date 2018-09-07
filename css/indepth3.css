@@ -467,7 +467,7 @@
 
 .input_respuesta {
 	position: absolute;
-	top: 104px;
+	top: 100px;
 	left: 2px;
 	right: 0px;
 	bottom: 20px;
@@ -527,9 +527,17 @@
 
 .indepth_respuestas_cont{
 	width: 100%;
-	height: 100%;
+	height: 69%;
 	display: inline-block;
 	vertical-align: top;
+}
+
+.indepth_info_cont {
+	font-size: 14px;
+	text-align: left;
+	color: #fff;
+	margin-top: 20px;
+	display: none;
 }
 
 .indepth_aviso{
@@ -542,7 +550,7 @@
 
 .indepth_pregunta_main {
 	width: 100%;
-	height: 210px;
+	height: 300px;
 }
 
 .indepth_cuadro_text{
@@ -904,7 +912,7 @@
 
 	.indepth_pregunta_main {
 		width: 310px;
-		height: 300px;
+		height: 435px;
 		margin: auto;
 	}
 
